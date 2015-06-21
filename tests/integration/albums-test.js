@@ -43,6 +43,17 @@ module("Integration - Albums Page", {
           JSON.stringify({ data: albums })
         ];
       });
+
+      this.post("/api/albums", function(request) {
+        const response = {
+          data: {
+            id: "6",
+            type: "albums",
+            attributes: JSON.parse(request.requestBody)["data"]["attributes"]
+          }
+        };
+        return [201, {}, JSON.stringify(response)];
+      });
     });
   },
   afterEach: function() {
@@ -52,10 +63,9 @@ module("Integration - Albums Page", {
 });
 
 test("Can be navigated to from landing page", function(assert) {
-  visit("/").then(function() {
-    click("a:contains('My Albums')").then(function() {
-      assert.equal(find("a:contains('Abbey Road')").length, 1);
-    });
+  visit("/");
+  click("a:contains('My Albums')").then(function() {
+    assert.equal(find("a:contains('Abbey Road')").length, 1);
   });
 });
 
@@ -67,5 +77,17 @@ test("Shows links to albums by artist, then title", function(assert) {
     assert.equal(albumNamesInOrder[0], "Alvvays - Alvvays");
     assert.equal(albumNamesInOrder[1], "The Beatles - Abbey Road");
     assert.equal(albumNamesInOrder[2], "The Beatles - Revolver");
+  });
+});
+
+test("Adding a new album to the list", function(assert) {
+  visit("/albums");
+
+  fillIn("input.artist", "Weezer");
+  fillIn("input.title", "Pinkerton");
+  click("button.submit");
+
+  andThen(function() {
+    assert.equal(find("a.album")[3].text.trim(), "Weezer - Pinkerton");
   });
 });
