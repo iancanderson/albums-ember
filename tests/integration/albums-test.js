@@ -54,6 +54,10 @@ module("Integration - Albums Page", {
         };
         return [201, {}, JSON.stringify(response)];
       });
+
+      this.delete("/api/albums/:album_id", function(request) {
+        return [204, {}, ""];
+      });
     });
   },
   afterEach: function() {
@@ -90,5 +94,15 @@ test("Adding a new album to the list", function(assert) {
 
   andThen(function() {
     assert.equal(find("a.album")[3].text.trim(), "Weezer - Pinkerton");
+  });
+});
+
+test("Deleting an album", function(assert) {
+  visit("/albums");
+
+  click("li:contains('Abbey Road') .delete");
+
+  andThen(function() {
+    assert.equal(find("a:contains('Abbey Road')").length, 0);
   });
 });

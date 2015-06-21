@@ -6,6 +6,9 @@
         {{album.artist}} - {{album.title}}
       </a>
       ({{album.releasedOn}})
+      <a href="#" class="delete" {{action "deleteAlbum" album}}>
+        x
+      </a>
     </li>
   {{/each}}
 </ul>

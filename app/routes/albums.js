@@ -8,6 +8,9 @@ export default Ember.Route.extend({
   actions: {
     createAlbum: function(attributes) {
       this.get("store").createRecord("album", attributes).save();
+    },
+    deleteAlbum: function(album) {
+      album.destroyRecord();
     }
   }
 });
