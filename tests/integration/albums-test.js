@@ -14,9 +14,25 @@ module("Integration - Albums Page", {
         type: "albums",
         attributes: {
           artist: "The Beatles",
+          title: "Revolver",
+        }
+      },
+      {
+        id: "2",
+        type: "albums",
+        attributes: {
+          artist: "Alvvays",
+          title: "Alvvays",
+        }
+      },
+      {
+        id: "3",
+        type: "albums",
+        attributes: {
+          artist: "The Beatles",
           title: "Abbey Road",
         }
-      }
+      },
     ];
 
     server = new Pretender(function() {
@@ -43,8 +59,13 @@ test("Can be navigated to from landing page", function(assert) {
   });
 });
 
-test("Shows links to albums", function(assert) {
+test("Shows links to albums by artist, then title", function(assert) {
   visit("/albums").then(function() {
-    assert.equal(find("a:contains('Abbey Road')").length, 1);
+    const albumNamesInOrder = find("a.album").map(function() {
+      return this.text.trim();
+    });
+    assert.equal(albumNamesInOrder[0], "Alvvays - Alvvays");
+    assert.equal(albumNamesInOrder[1], "The Beatles - Abbey Road");
+    assert.equal(albumNamesInOrder[2], "The Beatles - Revolver");
   });
 });

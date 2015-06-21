@@ -1,5 +1,9 @@
-{{#each model as |album|}}
-  <a href="#">
-    {{album.artist}} - {{album.title}}
-  </a>
-{{/each}}
+<ul>
+  {{#each sortedAlbums as |album|}}
+    <li>
+      <a href="#" class="album">
+        {{album.artist}} - {{album.title}}
+      </a>
+    </li>
+  {{/each}}
+</ul>
