@@ -26,7 +26,7 @@ module("Integration - Albums Page", {
           {"Content-Type": "application/json"},
           JSON.stringify({ data: albums })
         ];
-      }); 
+      });
     });
   },
   afterEach: function() {
