@@ -7,7 +7,8 @@ export default Ember.Component.extend({
     save: function() {
       const attributes = {
         artist: this.get("artist"),
-        title: this.get("title")
+        releasedOn: new Date(this.get("releasedOn")),
+        title: this.get("title"),
       };
       this.sendAction("action", attributes);
       this.set("artist", "");

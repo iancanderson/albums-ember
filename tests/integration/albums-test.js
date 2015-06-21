@@ -85,6 +85,7 @@ test("Adding a new album to the list", function(assert) {
 
   fillIn("input.artist", "Weezer");
   fillIn("input.title", "Pinkerton");
+  fillIn("input.released-on", "1996-09-24");
   click("button.submit");
 
   andThen(function() {

@@ -1,5 +1,7 @@
 {{yield}}
 
 {{input class="artist" value=artist placeholder="Artist"}}
-{{input class="title" value=title enter="save" placeholder="Title"}}
+{{input class="title" value=title placeholder="Title"}}
+{{input class="released-on" value=releasedOn enter="save" placeholder="Release Date"}}
+
 <button {{action "save"}} class="submit">Add Album</button>
