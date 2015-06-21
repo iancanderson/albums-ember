@@ -13,7 +13,7 @@ module("Integration - Landing Page", {
   }
 });
 
-test("Should welcome me to Allbums", function(assert) {
+test("Welcomes me to Allbums", function(assert) {
   visit("/").then(function() {
     assert.equal(find("h2#title").text(), "Welcome to Allbums");
   });
