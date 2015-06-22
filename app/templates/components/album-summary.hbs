@@ -1,0 +1,9 @@
+<li>
+  <a href="#" class="album">
+    {{album.artist}} - {{album.title}}
+  </a>
+  ({{release-date date=album.releasedOn}})
+  <a href="#" class="delete" {{action "clickDelete"}}>
+    x
+  </a>
+</li>

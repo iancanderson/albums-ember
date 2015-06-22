@@ -100,6 +100,7 @@ test("Adding a new album to the list", function(assert) {
 test("Deleting an album", function(assert) {
   visit("/albums");
 
+  window.confirm = function() { return true; };
   click("li:contains('Abbey Road') .delete");
 
   andThen(function() {
