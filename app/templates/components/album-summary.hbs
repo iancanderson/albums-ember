@@ -1,7 +1,7 @@
 <li>
-  <a href="#" class="album">
+  {{#link-to "album" album.id class="album"}}
     {{album.artist}} - {{album.title}}
-  </a>
+  {{/link-to}}
   ({{release-date date=album.releasedOn}})
   <a href="#" class="delete" {{action "clickDelete"}}>
     x

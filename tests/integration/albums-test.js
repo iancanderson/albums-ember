@@ -107,3 +107,15 @@ test("Deleting an album", function(assert) {
     assert.equal(find("a:contains('Abbey Road')").length, 0);
   });
 });
+
+test("Showing album details", function(assert) {
+  visit("/albums");
+
+  click("a:contains('Abbey Road')");
+
+  andThen(function() {
+    assert.equal(currentRouteName(), "album");
+    assert.equal(find("section:contains('Abbey Road')").length, 1);
+    assert.equal(find("section:contains('The Beatles')").length, 1);
+  });
+});
